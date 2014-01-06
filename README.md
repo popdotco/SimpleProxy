@@ -1,6 +1,4 @@
-SimpleProxy aims to be just that: a simple proxy. 
-
-The initial use case of this class was for easier handling of AJAX 
+SimpleProxy aims to be just that: *a simple proxy*. The initial use case of this class was for easier handling of AJAX 
 cross-domain CORS requests as Safari is still buggy in that department 
 and was not setting global domain headers.
 
