@@ -11,12 +11,6 @@ Any JSON encountered errors are returned with the following format:
 If returning errors in HTML, we simply set the http status code appropriately
 and return an H1 tag containing the error message.
 
-## Opinionated
-
-We initially had no intentions of opening this bad boy up, so some of the decisions 
-are fairly opinionated such as the handling of error messages being wrapped in
-`H1` tags. These should be removed for future versions.
-
 ## Usage
 
 ```php
@@ -40,8 +34,6 @@ $endpoint = getenv('REQUEST_URI');
 $sp->request($endpoint, $cookies = FALSE, $session = FALSE);
 ```
 
-_Note that the other two parameters passed to `__construct()` are `$responseType` and `$validRegex`.
-
 #### `$responseType` ####
 
 Dictates how we want to respond to the proxied request back to the client. Valid values are:
@@ -56,8 +48,6 @@ This is a simple regular expression string which allows you to validate that the
 matches an internal naming convention of your own. It's useful to prevent abuse, for instance. Perhaps
 you want to exclude certain characters, periods, etc.
 
-_Note that the other two parameters passed to `request()` are `$cookies` and `$session`._
-
 #### `$cookies` ####
 
 If set to `TRUE`, SimpleProxy will copy all cookies found in `$_COOKIE` and forward them on via `CURLOPT_COOKIE`. Likewise, when handling response data from the server, SimpleProxy will search for headers matchin `Set-Cookie` and copy the header in it's response back to the client.
@@ -65,6 +55,12 @@ If set to `TRUE`, SimpleProxy will copy all cookies found in `$_COOKIE` and forw
 #### `$session` ####
  
 If set to `TRUE`, SimpleProxy will check for the global constant `SID` and add it to the copied cookies array passed via `CUROPT_COOKIE`. Note that this option also requires that the `$cookies` parameter be set to `TRUE`.
+ 
+## Opinionated
+
+We initially had no intentions of opening this bad boy up, so some of the decisions 
+are fairly opinionated such as the handling of error messages being wrapped in
+`H1` tags. These should be removed for future versions.
  
 ## Credits
 
