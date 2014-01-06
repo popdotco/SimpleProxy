@@ -23,8 +23,14 @@ are fairly opinionated such as the handling of error messages being wrapped in
 // the base path to your remote API
 $apiBaseUrl = 'https://www.domain.co/api/';
 
+// the type of response we want to pass back
+$responseType = 'json';
+
+// the regex used
+$validRegex = '/.*/';
+
 // initialize the library
-$sp = new SimpleProxy($apiBaseUrl);
+$sp = new SimpleProxy($apiBaseUrl, $responseType, $validRegex);
 
 // the relative path of the request URI to forward on
 $endpoint = getenv('REQUEST_URI');
@@ -34,8 +40,23 @@ $endpoint = getenv('REQUEST_URI');
 $sp->request($endpoint, $cookies = FALSE, $session = FALSE);
 ```
 
-Note that the other two parameters passed to `request()` are `$cookies` and `$session`. 
+_Note that the other two parameters passed to `__construct()` are `$responseType` and `$validRegex`.
 
+#### `$responseType` ####
+
+Dictates how we want to respond to the proxied request back to the client. Valid values are:
+
+ * `native` - Respond with native headers that match the remote server's response.
+ * `json` - Simple case of returning JSON data with appropriate headers.
+ * `jsonp` - If JSONP, we also anticipate having a `$_GET` parameter of `callback` passed in.
+
+#### `$validRegex` ####
+
+This is a simple regular expression string which allows you to validate that the inbound request URL
+matches an internal naming convention of your own. It's useful to prevent abuse, for instance. Perhaps
+you want to exclude certain characters, periods, etc.
+
+_Note that the other two parameters passed to `request()` are `$cookies` and `$session`._
 
 #### `$cookies` ####
 
