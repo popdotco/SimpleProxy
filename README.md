@@ -31,8 +31,19 @@ $endpoint = getenv('REQUEST_URI');
 
 // proxy the request
 // automatically handles echoing the return JSON(-P) data with appropriate headers
-$sp->request($endpoint, TRUE);
+$sp->request($endpoint, $cookies = FALSE, $session = FALSE);
 ```
+
+Note that the other two parameters passed to `request()` are `$cookies` and `$session`. 
+
+
+#### `$cookies` ####
+
+If set to `TRUE`, SimpleProxy will copy all cookies found in `$_COOKIE` and forward them on via `CURLOPT_COOKIE`. Likewise, when handling response data from the server, SimpleProxy will search for headers matchin `Set-Cookie` and copy the header in it's response back to the client.
+
+#### `$session` ####
+ 
+If set to `TRUE`, SimpleProxy will check for the global constant `SID` and add it to the copied cookies array passed via `CUROPT_COOKIE`. Note that this option also requires that the `$cookies` parameter be set to `TRUE`.
  
 ## Credits
 
