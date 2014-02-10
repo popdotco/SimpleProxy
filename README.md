@@ -67,3 +67,7 @@ are fairly opinionated such as the handling of error messages being wrapped in
 Original credit goes out to Ben Alman and his php-simple-proxy script.
 It provided a solid framework for us to extend and build upon. You can
 check out the original script here: http://benalman.com/projects/php-simple-proxy/
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/popdotco/simpleproxy/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
